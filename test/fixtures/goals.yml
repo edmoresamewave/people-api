@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  score: 1
+  person: one
+
+two:
+  title: MyString
+  score: 1
+  person: two
+
+invalid:
+  score: 1
+  person: two
+
+invalid_score1:
+  title: MyString
+  score: 0
+  person: two
+
+invalid_score2:
+  title: MyString
+  score: 11
+  person: two
