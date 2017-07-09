@@ -1,8 +1,11 @@
 class PeopleController < ApplicationController
   def index
     @people = Person.all
-    render json: @people, include: :goals, methods: :person_score, status: :ok
-
+    render json: @people, root: true,
+           include: {goals: {except: [:created_at, :updated_at, :person_id]}},
+           methods: :person_score,
+           except: [:created_at, :updated_at],
+           status: :ok
   end
 
   def create
