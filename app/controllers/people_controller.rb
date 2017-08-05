@@ -24,6 +24,6 @@ class PeopleController < ApplicationController
 
   private
   def people_params
-    params.permit(:first_name, :last_name)
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:first_name, :last_name])
   end
 end
