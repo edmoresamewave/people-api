@@ -1,5 +1,5 @@
 class Person < ApplicationRecord
-  has_many :goals
+  has_many :goals, dependent: :destroy
 
   validates :first_name, :last_name, presence: true
 
