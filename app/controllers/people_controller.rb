@@ -22,6 +22,22 @@ class PeopleController < ApplicationController
            status: :ok
   end
 
+  def update
+    @person = Person.find_by_id(params[:id])
+    @person.update_attributes(people_params)
+    render json: @person,
+          include: {goals: {except: [:created_at, :updated_at, :person_id]}},
+          methods: :person_score,
+          except: [:created_at, :updated_at],
+          status: :ok
+  end
+
+  def destroy
+    @person = Person.find_by_id(params[:id])
+    @person.destroy
+    render json: {}, status: :no_content
+  end
+
   private
   def people_params
     ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:first_name, :last_name])
