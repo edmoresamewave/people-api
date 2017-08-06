@@ -15,11 +15,15 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.find_by_id(params[:id])
-    render json: @person,
-           include: {goals: {except: [:created_at, :updated_at, :person_id]}},
-           methods: :person_score,
-           except: [:created_at, :updated_at],
-           status: :ok
+    if @person.nil?
+      render plain: '404 Not found', status: 404
+    else
+      render json: @person,
+             include: {goals: {except: [:created_at, :updated_at, :person_id]}},
+             methods: :person_score,
+             except: [:created_at, :updated_at],
+             status: :ok
+    end
   end
 
   def update
