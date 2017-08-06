@@ -8,6 +8,6 @@ class Person < ApplicationRecord
 
     scores = self.goals.pluck(:score)
     total = scores.sum
-    total/scores.count
+    total.to_f/scores.count
   end
 end
